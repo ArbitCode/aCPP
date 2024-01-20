@@ -308,6 +308,93 @@ int main()
     s6.StudentDetails();
 }
 ```
+
+```cpp
+#include<iostream>
+#include<memory>
+#include<vector>
+using namespace std;
+class MyClass{
+  int *p = nullptr;
+  public:
+  MyClass(int val);
+  ~MyClass();
+  MyClass(const MyClass &rhs);
+  MyClass& operator=(const MyClass &rhs);
+  MyClass(MyClass&& rhs);
+  MyClass& operator=(MyClass &&rhs);
+  int getVal();
+};
+  //constructor
+  MyClass::MyClass(int val){
+      cout << "Constrcutor called for " << val << endl;
+      p = new int(val);
+  }
+  //desctructor
+  MyClass::~MyClass(){
+      if(p!=nullptr){
+        cout << "Desctructor called for " << (*p) << endl;
+        delete p;
+        }
+      else{
+        cout << "Desctructor called for " << "nullptr" << endl;
+      }
+      
+  }
+  // copy constructor
+  MyClass::MyClass(const MyClass &rhs){
+     cout << "copy constructor called for rhs value " << *(rhs.p) << endl;
+     p = new int(*(rhs.p));
+  }
+  //move constructor
+  MyClass::MyClass( MyClass&& rhs){
+      cout << "Move constructor called for " << *(rhs.p) << endl;
+      p = new int(*(rhs.p));
+      rhs.p = nullptr;
+  }
+  //copy assignment
+  MyClass& MyClass::operator=(const MyClass &rhs){
+     cout << "copy assignemnt called for rhs value " << *(rhs.p) << endl;
+      if(this != &rhs){
+          delete p;
+          p = new int(*(rhs.p));
+      }
+      return *this;
+  }
+//move assignment
+MyClass& MyClass::operator=(MyClass&& rhs){
+  cout << "Move assignment called for " << *(rhs.p) << endl;
+  if(this != &rhs){
+      delete p;
+      p = new int(*(rhs.p));
+      rhs.p = nullptr;
+  }
+    return *this;
+}
+ int MyClass::getVal(){
+    return (*p);
+ }
+  
+
+int main(){
+    vector<MyClass> vec;
+    vec.push_back(MyClass(10));
+    vec.push_back(MyClass(20));
+}
+
+/*
+Constrcutor called for 10
+Move constructor called for 10
+Desctructor called for nullptr
+Constrcutor called for 20
+Move constructor called for 20
+copy constructor called for rhs value 10
+Desctructor called for 10
+Desctructor called for nullptr
+Desctructor called for 10
+Desctructor called for 20
+*/
+```
 ## Operator overloading
 
 ### Exercise
