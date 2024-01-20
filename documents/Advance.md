@@ -6,6 +6,7 @@
 - Exceptions
 - Smart Pointers
 - I/O Streams
+- Storage Class
 ---
 ## Template
 Template are mechanism to support `Generic Programming`
@@ -437,3 +438,47 @@ int main(){
 }
 ```
 ---
+## Storage Class
+```cpp
+//syntax
+storage_class var_data_type var_name;
+```
+C++ has 6 storage class.
+1. auto
+2. register
+3. extern
+4. static
+5. mutable
+6. thread_local
+
+|Storage class|keyword|lifetime|visibility|intial value|
+|-------------|-------|--------|----------|------------|
+|Automatic|auto|block|Local|Garbage|
+|Register|register|block|Local|Garbage|
+|Eternal|extern|whole program|global|zero|
+|Static|static|whole program|local|zero|
+|mutable|mutable|class|local|Garbage|
+|thread_local|thread_local|whole thread|local/global|Garbage|
+|
+
+`Note:` mutable is used to allow a particular data member of a const object to be modified.
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+class MyClass{
+    public:
+    int x;
+    mutable int y;
+    MyClass(int xx, int yy):x{xx},y{yy}{}
+    
+};
+int main(){
+    const MyClass t1(1,2);
+    t1.y = 100;
+    cout << t1.y;
+    //t1.x = 3 give error, as x is read-only in const t1 object. 
+}
+/*
+100
+*/
+```
