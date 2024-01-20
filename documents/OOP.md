@@ -395,6 +395,14 @@ Desctructor called for 10
 Desctructor called for 20
 */
 ```
+`Note:` 
+
+1. pass value by reference in copy construcor since copy constructor is function itself and when pass by value to copy constructor it will call same function infinitly.
+2. Copy constructor pass reference as const since during compiler creates a temp object during compile time. we can no copy non-const value to const value vice-versa.
+3. Release old memory in Copy and Move assigment.
+4. No need to pass const parameter to move semantic since it nullfily old data after move. so rhs should be readble.
+
+
 ## Operator overloading
 
 ### Exercise
