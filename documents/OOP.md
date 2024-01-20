@@ -471,7 +471,7 @@ int main(){
   obj.c = 'c';
 }
 ```
-## Polymorphism
+## Polymorphism : https://www.learncpp.com/cpp-tutorial/the-virtual-table/
 Polymorphism means object can morph into different types.<br>
 Polymorphism is achieved throgh an interface known as virtual functions.<br>
 A virtual functions is a function whose behaviour can be overriden in derived class.<br>
