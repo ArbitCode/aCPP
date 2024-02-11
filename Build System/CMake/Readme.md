@@ -54,9 +54,19 @@ this binary provides a few modes of action.
 - Running a Command line tool
 - Getting Help
 
-## Generating a project build system
-This is first step to build our project.
+## Project Files
 
+### The Source Tree : Project folder
+- It requires that you provide a CMakeLists.txt Configuration file in its top directory.
+- It should be managed with VCS like git
+- The path to this directory is given by the user with a `-S` argument of the cmake command.
+- avoid hardcoding any absolute paths.
 
+### The Build Tree : build root
+- binary files, libraries, objects, and everything generated during the build.
+- do not add in VSC
 
-
+```sh
+$> cmake -B <build-tree-path> -S <project-folder-path>
+$> cmake --build <build-tree-path>
+```
