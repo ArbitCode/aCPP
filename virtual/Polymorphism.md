@@ -414,3 +414,5 @@ Base Destructor
 3. `Creation of vTable by Compiler:` when a class contains virtual functions, the compiler creates a vTable(virtual function table) for that class. this table contains pointers to virtual functions of the class.
 4. `Pointer Adjustment:` Each object of the class that contains virtual functions includes a hidden pointer(known as vPtr) that points to the vTable. This pointer is initialized by the constructor of the class and adjusted during inheritance.
 5. `Dynamic Dispatcher:` when you call a virtual function on a base class pointer or reference, the actual function that gets executed is determined at runtime based on the type of the object the pointer or reference pointing to. this is known as dynamic dispatch.
+
+Article: [Vtable and vPtr](https://pabloariasal.github.io/2017/06/10/understanding-virtual-tables/)
