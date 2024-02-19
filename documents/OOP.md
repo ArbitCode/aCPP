@@ -654,4 +654,73 @@ int main(){
     return 0;
 }
 ```
----
+
+# create object only on heap
+
+```cpp
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+class A
+{
+protected:
+    A() {}
+public:
+    virtual void fun() {cout << "A fun" << endl;}
+};
+class B : public A 
+{
+private:
+    B(){}
+public:
+    virtual void fun1() {}
+    void fun() {cout << "B fun" << endl;}
+    static B* create(){
+        return new B();
+    }
+};
+
+void clients(A & obj) { // pass as reference to achieve polymorphism
+    obj.fun();
+}
+
+int main()
+{
+    B *obj = B::create();
+    clients(*obj);
+    A* obj1 = B::create(); // pointer polymorphism
+    obj1->fun();
+    delete obj1;
+    delete obj;
+}
+``` 
+
+## Create object on only stack
+```cpp
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+class A
+{
+public:
+    virtual void fun() { cout << "A fun" << endl; }
+};
+class B : public A
+{
+public:
+    virtual void fun1() {}
+    void fun() { cout << "B fun" << endl; }
+    void* operator new(size_t size) = delete;
+};
+
+void clients(A &obj)
+{ // pass as reference to achieve polymorphism
+    obj.fun();
+}
+
+int main()
+{
+    A ptr = B();
+    return 0;
+}
+```
