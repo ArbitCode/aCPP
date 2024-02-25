@@ -7,6 +7,7 @@
 - Smart Pointers
 - I/O Streams
 - Storage Class
+- function pointers
 ---
 ## Template
 Template are mechanism to support `Generic Programming`
@@ -481,4 +482,46 @@ int main(){
 /*
 100
 */
+```
+
+# fucntion pointers
+
+```cpp
+// syntax
+// Declare
+return_type (*function_ptr_name)(param_type, ...);
+// Referencing 
+function_ptr_name = function_name
+// Dereferencing
+data_typ x = function_ptr_name(param_type parm, ...);
+```
+
+## Example
+
+```cpp
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include<string>
+using namespace std;
+int getIndex(string &ss){
+    int arr[256];
+    for(int i = 0; i < 256; i++) arr[i] = -1;
+    for(int i = 0; i < ss.length(); i++) {
+        if(arr[ss[i]] == -1) arr[ss[i]] = i;
+        else arr[ss[i]] = -2;
+    }
+    int res = 257;
+    for(int i = 0; i < 256; i++) if(arr[i] >= 0) res = min(res, arr[i]);
+    if(res == 257) return -1;
+    else return res;
+    
+}
+
+int main() {
+    string ss = "xxAAcababababc";
+    int (*funPtr)(string& );
+    funPtr = getIndex;
+    cout << funPtr(ss);
+    return 0;
+}
 ```
