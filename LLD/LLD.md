@@ -1,12 +1,10 @@
 # LLD
-0. [OOPs](#oops)
-1. [SOLID principle](#solid-principle)
-2. Design Patterns
-3. Class Diagram
-4. UML
-5. Sequence & usecase diagram
-6. Test case
-7. Multithreading
+1. [OOPs](#oops)
+2. [SOLID principle](#solid-principle)
+3. [UML](#UML)
+4. [Multithreading](#multithreading)
+6. [Test case](#test-case)
+5. [Design Patterns](#design-patterns)
 
 ## OOPs
 4 Pillars of OOPs
@@ -338,16 +336,12 @@ private:
 };
 ```
 
- 
-
-## Design Patterns
-
 ## UML
+- Class Diagram
+- Sequence & usecase diagram 
 
-## Class Diagram
-
-## Sequence & usecase diagram
+## Multithreading
 
 ## Test case
 
-## Multithreading
+## Design Patterns
