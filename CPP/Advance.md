@@ -116,6 +116,20 @@ int main(){
     myFunction(123.f);
 }
 ```
+### Template Advantage and disadvantage
+Advance:
+1. Code reusability
+2. Flexibility
+3. Performance
+4. Static Type checking
+5. Reduced maintenance
+
+Disadvantage:
+1. compilation time
+2. Code bloat : compiler generates multiple copy of function and class for diff types.
+3. Complexity
+4. Readability
+
 ## Enum
 enum is type whose values are sybolic, user-defined, named constants called enumerators.<br>
 There is two type of Enum<br>
