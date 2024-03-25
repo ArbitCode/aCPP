@@ -97,11 +97,14 @@ enum class MyEnum{
 };
 int main(){
   MyEnum myenum = MyEnum::myFirstVal;
+  std::cout << static_cast<int>(myenum);
 }
+// 0
 ```
 ## Smart Pointers
 std::unique_ptr<Type> : only one pointer pointing at object.
 std::shared_ptr<Type> : multiple shared pointer pointing at object. 
+std::weak_ptr<Type> : it is used for parent-child relationship, otherwise shared pointer does not delete objects.
 
 ```cpp
 #include<iostream>
@@ -123,6 +126,48 @@ int main(){
     std::cout << *pSInt3;
     std::cout << *pSInt;
     std::cout << sizeof(*pSInt1); // 4 size of int
+}
+```
+### weak_ptr
+
+```cpp
+#include<iostream>
+#include<memory>
+#include<string>
+using namespace std;
+
+class Employee;
+class Parents;
+
+class Employee
+{
+    public:
+    string name;
+    weak_ptr<Parents> pParents;
+    Employee(string str):name(str){cout << "Employee created\n";}
+    ~Employee(){cout << "Employee Deleted\n";}
+    void getName(){cout << name <<"\n";}
+    
+};
+
+class Parents
+{
+    public:
+    string name;
+    weak_ptr<Employee> pEmployee;
+    Parents(string str):name(str){cout << "Parent created\n";}
+    ~Parents(){cout << "Parent Deleted\n";}
+    void getName(){cout << name <<"\n";}
+};
+
+int main()
+{
+    shared_ptr<Employee> emp = make_shared<Employee>("RAJA");
+    shared_ptr<Parents> parents = make_shared<Parents>("BAID");
+    emp->pParents = parents;
+    parents->pEmployee = emp;
+    parents->getName();
+    emp->pParents.lock()->getName();
 }
 ```
 ## std::unordered_set
